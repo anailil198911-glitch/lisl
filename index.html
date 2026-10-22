@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#11130f">
+<meta name="description" content="Explora triángulos, construcciones y relaciones geométricas en este laboratorio interactivo.">
+<title>FORMA — Laboratorio geométrico</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+:root{--bg:#11130f;--panel:#171a15;--panel2:#1c201a;--line:#30352c;--ink:#eaeedf;--muted:#898d80;--lime:#77e2ff;--lime-soft:#77e2ff1b;--cyan:#74dce0;--orange:#66cbff;--mono:'DM Mono',monospace;--sans:'DM Sans',sans-serif;--display:'Space Grotesk',sans-serif}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);min-width:360px}button{font:inherit;color:inherit}button:focus-visible,[tabindex]:focus-visible{outline:2px solid var(--lime);outline-offset:3px}.app{min-height:100vh;display:grid;grid-template-rows:64px 1fr}.topbar{display:flex;align-items:center;justify-content:space-between;padding:0 30px;border-bottom:1px solid var(--line);background:#11130ff2;position:sticky;top:0;z-index:4}.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--ink)}.brand-mark{width:28px;height:28px;display:grid;place-items:center;border:1px solid var(--lime);color:var(--lime);font:500 12px var(--mono);transform:rotate(-45deg)}.brand-mark span{transform:rotate(45deg)}.brand-name{font:600 16px var(--display);letter-spacing:.18em}.brand-divider{height:19px;border-left:1px solid var(--line);margin-left:2px}.brand-sub{font:11px var(--mono);letter-spacing:.04em;color:var(--muted)}.top-right{display:flex;align-items:center;gap:18px}.live{display:flex;align-items:center;gap:8px;font:10px var(--mono);letter-spacing:.11em;color:#aeb1a3}.live-dot{width:7px;height:7px;background:var(--lime);border-radius:50%;box-shadow:0 0 12px #77e2ff80}.icon-btn{height:34px;padding:0 12px;border:1px solid var(--line);background:transparent;color:var(--muted);font:11px var(--mono);cursor:pointer}.icon-btn:hover{color:var(--lime);border-color:var(--lime)}.workspace{display:grid;grid-template-columns:230px minmax(380px,1fr) 284px;min-height:calc(100vh - 64px)}.sidebar{border-right:1px solid var(--line);padding:25px 17px 22px 21px;display:flex;flex-direction:column}.rail-label,.eyebrow{font:10px var(--mono);text-transform:uppercase;letter-spacing:.16em;color:var(--muted)}.rail-label{margin:3px 0 14px 3px}.experiment{display:flex;align-items:center;gap:11px;padding:12px 11px;border:1px solid var(--line);background:var(--panel);margin-bottom:9px}.experiment-no{color:var(--lime);font:11px var(--mono)}.experiment-copy{flex:1}.experiment-title{font-size:12px;font-weight:600}.experiment-desc{color:var(--muted);font:9px var(--mono);margin-top:4px}.status{font:8px var(--mono);color:var(--lime);border:1px solid #77e2ff55;padding:4px 5px}.divider{border:0;border-top:1px solid var(--line);margin:17px 0}.section-head{display:flex;justify-content:space-between;align-items:center;margin:2px 2px 12px}.mini-count{color:var(--muted);font:10px var(--mono)}.shape-list{display:flex;flex-direction:column;gap:4px}.shape-btn{border:1px solid transparent;background:transparent;text-align:left;display:flex;align-items:center;gap:10px;padding:9px 9px;cursor:pointer;color:var(--muted);font-size:12px}.shape-btn:hover{color:var(--ink);background:#ffffff06}.shape-btn.active{color:var(--lime);background:var(--lime-soft);border-color:#77e2ff38}.shape-glyph{width:22px;text-align:center;font-size:17px}.shape-triangle{font-size:15px}.subsection{margin-top:21px}.tool-list{display:flex;flex-direction:column;gap:3px}.tool-btn{width:100%;display:flex;align-items:center;gap:10px;padding:8px 9px;background:transparent;border:0;text-align:left;font-size:11px;color:var(--muted);cursor:pointer}.tool-btn:hover{color:var(--ink)}.tool-btn input{accent-color:var(--lime);margin:0;width:13px;height:13px}.tool-symbol{width:22px;text-align:center;font:12px var(--mono);color:var(--cyan)}.sidebar-foot{margin-top:auto;padding-top:22px}.hint{color:var(--muted);font:10px/1.7 var(--mono);padding:11px;border-left:1px solid var(--lime);background:#77e2ff08}.hint strong{color:var(--lime);font-weight:400}.main{min-width:0;padding:27px 28px 25px}.pagehead{display:flex;justify-content:space-between;align-items:flex-start;gap:15px;margin-bottom:19px}.title-kicker{display:flex;align-items:center;gap:9px;margin-bottom:7px}.eyebrow{color:var(--lime)}.serial{font:9px var(--mono);color:#585d52}.page-title{font:600 clamp(23px,2.5vw,31px)/1.1 var(--display);letter-spacing:-.045em;margin:0}.page-title span{color:var(--lime)}.subtitle{color:var(--muted);font-size:11px;margin:7px 0 0}.view-actions{display:flex;gap:7px;padding-top:17px}.action{background:transparent;border:1px solid var(--line);padding:8px 10px;color:var(--muted);font:10px var(--mono);cursor:pointer;white-space:nowrap}.action:hover,.action.selected{border-color:#77e2ff66;color:var(--lime)}.board{position:relative;border:1px solid var(--line);background-color:#151813;background-image:radial-gradient(ellipse at 50% 52%,#252c1a 0%,#181b15 44%,#141611 100%);height:min(54vw,480px);min-height:330px;overflow:hidden}.board:before,.board:after{position:absolute;color:#727866;font:9px var(--mono);letter-spacing:.11em;z-index:1}.board:before{content:'PLANO CARTESIANO  /  UNIDAD: cm';top:13px;left:15px}.board:after{content:'MUESTRA 001.A';bottom:12px;left:15px}.board-tag{position:absolute;right:13px;top:12px;z-index:1;border:1px solid #383e31;background:#141711;padding:5px 7px;color:#b2b89f;font:9px var(--mono)}.board svg{width:100%;height:100%;display:block;touch-action:none}.grid-line{stroke:#ffffff0b;stroke-width:1}.axis{stroke:#ffffff22;stroke-width:1}.axis-label{fill:#838879;font:10px var(--mono)}.tri-fill{fill:#77e2ff10}.edge{stroke:var(--lime);stroke-width:2;fill:none;stroke-linejoin:round}.construction{stroke:var(--cyan);stroke-width:1.35;stroke-dasharray:6 5;fill:none}.circumcircle{stroke:var(--orange);stroke-width:1.25;stroke-dasharray:3 5;fill:#66cbff06}.vertex{fill:var(--lime);stroke:#141711;stroke-width:4;cursor:grab}.vertex:active{cursor:grabbing}.vertex-label{fill:var(--ink);font:12px var(--mono);paint-order:stroke;stroke:#151813;stroke-width:4px;stroke-linejoin:round}.center-point{fill:var(--cyan);stroke:#151813;stroke-width:2}.point-label{fill:var(--cyan);font:10px var(--mono);paint-order:stroke;stroke:#151813;stroke-width:4px}.right-mark{stroke:#77e2ff;stroke-width:1.4;fill:none}.angle-arc{stroke:var(--orange);stroke-width:1.25;fill:none}.angle-label{fill:var(--orange);font:10px var(--mono)}.board-bottom{position:absolute;right:13px;bottom:11px;z-index:1;display:flex;align-items:center;gap:7px;color:var(--muted);font:9px var(--mono)}.board-bottom i{width:6px;height:6px;border-radius:50%;background:var(--cyan)}.readout{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--line);border-top:0}.readout-item{padding:13px 15px;border-right:1px solid var(--line);min-width:0}.readout-item:last-child{border-right:0}.readout-label{display:flex;align-items:center;gap:6px;color:var(--muted);font:9px var(--mono);text-transform:uppercase;letter-spacing:.07em}.readout-label b{color:var(--cyan);font-weight:400}.readout-value{font:500 20px var(--display);letter-spacing:-.04em;margin-top:7px;white-space:nowrap}.readout-unit{font:10px var(--mono);color:var(--muted);letter-spacing:0}.bottom-row{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:23px}.block-title{display:flex;align-items:center;justify-content:space-between;padding-bottom:10px;border-bottom:1px solid var(--line);font:10px var(--mono);letter-spacing:.11em;text-transform:uppercase;color:#b8bdac}.block-title span:last-child{color:var(--muted);font-size:9px;letter-spacing:0}.side-table{width:100%;border-collapse:collapse;font:10px var(--mono)}.side-table th{color:var(--muted);font-weight:400;text-align:left;padding:9px 4px 7px}.side-table td{padding:8px 4px;border-top:1px solid #ffffff0c}.side-table td:last-child,.side-table th:last-child{text-align:right}.side-id{color:var(--lime)}.mini-bar{height:2px;width:40px;background:#ffffff15;display:inline-block;vertical-align:middle;margin-right:8px}.mini-bar i{height:100%;display:block;background:var(--lime)}.insight{display:flex;gap:11px;padding-top:12px;color:var(--muted);font-size:10px;line-height:1.55}.insight-symbol{color:var(--lime);font:15px var(--mono)}.insight strong{color:var(--ink);font-weight:500}.inspector{border-left:1px solid var(--line);padding:27px 19px 22px;min-width:0}.inspector-heading{display:flex;align-items:center;justify-content:space-between;padding-bottom:13px;border-bottom:1px solid var(--line)}.inspector-title{font:10px var(--mono);text-transform:uppercase;letter-spacing:.13em;color:#c5c9b9}.inspector-code{color:var(--muted);font:9px var(--mono)}.property{padding:13px 0;border-bottom:1px solid #ffffff10}.property-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:9px}.property-name{font-size:11px;color:#c5c9b9}.property-value{color:var(--lime);font:12px var(--mono)}.property-value .unit{color:var(--muted);font-size:9px}.property-track{height:3px;background:#ffffff12}.property-track i{height:100%;display:block;background:var(--lime);transition:width .2s}.property-detail{display:flex;justify-content:space-between;margin-top:7px;color:var(--muted);font:9px var(--mono)}.angle-list{margin-top:18px}.angle-row{display:flex;align-items:center;justify-content:space-between;padding:9px 0;border-bottom:1px solid #ffffff0c;color:var(--muted);font:10px var(--mono)}.angle-row b{color:var(--orange);font-weight:400}.angle-left{display:flex;align-items:center;gap:8px}.angle-dot{width:6px;height:6px;background:var(--orange);border-radius:50%}.theorem{margin-top:21px;padding:13px 12px;background:#1b2016;border-left:2px solid var(--lime)}.theorem-label{color:var(--lime);font:9px var(--mono);letter-spacing:.1em;text-transform:uppercase}.theorem p{font-size:10px;line-height:1.6;color:#afb3a5;margin:7px 0 0}.theorem strong{color:var(--ink);font-weight:500}.inspector-note{margin-top:19px;font:9px/1.7 var(--mono);color:#73796c}.statusline{display:flex;align-items:center;justify-content:space-between;margin-top:22px;padding-top:11px;border-top:1px solid var(--line);font:9px var(--mono);color:var(--muted)}.statusline strong{color:var(--lime);font-weight:400}.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,12px);background:var(--lime);color:#11130f;padding:10px 15px;font:11px var(--mono);opacity:0;pointer-events:none;transition:.2s;z-index:5}.toast.show{opacity:1;transform:translate(-50%,0)}@media(max-width:1080px){.workspace{grid-template-columns:205px minmax(350px,1fr)}.inspector{grid-column:2;border-top:1px solid var(--line);border-left:0;padding:18px 24px;display:grid;grid-template-columns:1fr 1fr;column-gap:25px}.inspector-heading,.statusline{grid-column:1/-1}.theorem,.inspector-note,.angle-list{margin-top:14px}.main{padding-left:22px;padding-right:22px}}@media(max-width:700px){.app{grid-template-rows:56px 1fr}.topbar{height:56px;padding:0 15px}.brand-sub,.brand-divider{display:none}.top-right{gap:9px}.live{font-size:8px}.workspace{display:flex;flex-direction:column}.sidebar{order:0;border-right:0;border-bottom:1px solid var(--line);padding:12px 15px}.sidebar>.rail-label,.sidebar>.experiment,.sidebar>.divider,.sidebar>.subsection,.sidebar-foot{display:none}.section-head{display:none}.shape-list{flex-direction:row;overflow:auto;gap:5px}.shape-btn{white-space:nowrap;padding:8px 10px;font-size:10px}.shape-glyph{width:auto}.main{order:1;padding:20px 15px}.pagehead{margin-bottom:13px}.page-title{font-size:25px}.subtitle{font-size:10px}.view-actions{padding-top:18px}.action{padding:7px;font-size:9px}.board{height:64vw;min-height:285px}.readout-item{padding:10px 9px}.readout-label{font-size:8px}.readout-value{font-size:17px}.readout-unit{font-size:8px}.bottom-row{gap:14px;margin-top:18px}.block-title{font-size:9px}.inspector{order:2;grid-column:auto;padding:17px 16px;display:grid;grid-template-columns:1fr 1fr;gap:0 16px;border-top:1px solid var(--line)}.inspector-heading,.statusline{grid-column:1/-1}.property{padding:10px 0}.property-name{font-size:10px}.property-value{font-size:10px}.theorem{margin-top:14px}.inspector-note,.angle-list{margin-top:13px}}@media(max-width:430px){.bottom-row{grid-template-columns:1fr}.bottom-row>section+section{margin-top:2px}.view-actions{gap:4px}.action{padding:6px}.board{min-height:260px}.readout-value{font-size:15px}}
+:root{--bg:#08111f;--panel:#101b2d;--panel2:#15243a;--line:#203653;--ink:#e8f4ff;--muted:#879db9;--lime:#77e2ff;--lime-soft:#77e2ff1b;--cyan:#c0a4ff;--orange:#66cbff;--sheen:#adbdff}
+body{background:radial-gradient(ellipse at 82% 6%,#161d3c 0%,transparent 34%),radial-gradient(ellipse at 4% 82%,#0d2636 0%,transparent 31%),var(--bg)}
+.topbar{background:#08111fee;backdrop-filter:blur(15px)}
+.experiment{background:linear-gradient(115deg,#111f34,#111a2c);border-color:#263e5b}
+.shape-btn.active{background:linear-gradient(115deg,#77e2ff1c,#ad8bff15);border-color:#7bbdff55}
+.board{background-color:#10182a;background-image:radial-gradient(ellipse at 48% 50%,#192c46 0%,#111a2b 48%,#0c1524 100%),linear-gradient(135deg,#77e2ff08,#ad8bff0a)}
+.board-tag{border-color:#476287;background:linear-gradient(110deg,#111b2b,#242343);color:#b9d9ff}
+.theorem{background:linear-gradient(110deg,#142841,#1b1d3b);border-left-color:var(--lime)}
+.icon-btn:hover,.action:hover,.action.selected{border-color:#78dfff88}
+.live-dot{box-shadow:0 0 12px #77e2ff99}
+.brand-mark{box-shadow:0 0 14px #77e2ff20}
+@media(max-width:700px){.top-right #helpBtn{display:none}}
+.page-title span{background:linear-gradient(100deg,#77e2ff 0%,#b6a4ff 53%,#72c7ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.brand-name{background:linear-gradient(105deg,#f0f8ff 12%,#7edfff 56%,#bdabff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.board{box-shadow:inset 0 0 65px #6173ff08,0 0 35px #4ba8ff08}
+.readout-item:first-child .readout-label b,.tool-symbol{color:#86e4ff}
+.shape-btn.active{box-shadow:inset 2px 0 #7be3ff}
+</style>
+</head>
+<body>
+<div class="app">
+  <header class="topbar">
+    <a class="brand" href="#" aria-label="FORMA laboratorio geométrico">
+      <span class="brand-mark"><span>F</span></span><span class="brand-name">FORMA</span><span class="brand-divider"></span><span class="brand-sub">laboratorio geométrico</span>
+    </a>
+    <div class="top-right"><span class="live"><i class="live-dot"></i> SESIÓN EN VIVO</span><button class="icon-btn" id="soundBtn" type="button" aria-label="Desactivar sonido" aria-pressed="true">♫ SONIDO ON</button><button class="icon-btn" id="helpBtn" type="button" aria-label="Ayuda">?&nbsp; AYUDA</button></div>
+  </header>
+  <div class="workspace">
+    <aside class="sidebar">
+      <div class="rail-label">CUADERNO DE CAMPO</div>
+      <div class="experiment"><span class="experiment-no">01</span><div class="experiment-copy"><div class="experiment-title">Geometría plana</div><div class="experiment-desc">3 OBJETOS · 4 CONSTRUCCIONES</div></div><span class="status">ACTIVO</span></div>
+      <hr class="divider">
+      <div class="section-head"><span class="rail-label" style="margin:0">OBJETO DE ESTUDIO</span><span class="mini-count">01 / 03</span></div>
+      <div class="shape-list" role="group" aria-label="Tipo de triángulo">
+        <button type="button" class="shape-btn active" data-shape="libre" aria-pressed="true"><span class="shape-glyph shape-triangle">△</span> Triángulo libre</button>
+        <button type="button" class="shape-btn" data-shape="equilatero" aria-pressed="false"><span class="shape-glyph">△</span> Equilátero</button>
+        <button type="button" class="shape-btn" data-shape="rectangulo" aria-pressed="false"><span class="shape-glyph">◿</span> Rectángulo</button>
+      </div>
+      <div class="subsection"><div class="section-head"><span class="rail-label" style="margin:0">CONSTRUCCIONES</span><span class="mini-count">04</span></div>
+        <div class="tool-list">
+          <label class="tool-btn"><input type="checkbox" data-construct="altura"><span class="tool-symbol">⊥</span>Altura desde C</label>
+          <label class="tool-btn"><input type="checkbox" data-construct="mediana"><span class="tool-symbol">↗</span>Mediana desde C</label>
+          <label class="tool-btn"><input type="checkbox" data-construct="bisectriz"><span class="tool-symbol">∠</span>Bisectriz en C</label>
+          <label class="tool-btn"><input type="checkbox" data-construct="circuncentro"><span class="tool-symbol">◎</span>Circunferencia</label>
+        </div>
+      </div>
+      <div class="sidebar-foot"><div class="hint"><strong>↗ EXPERIMENTA</strong><br>Arrastra los puntos del plano.<br>La geometría se recalcula en vivo.</div></div>
+    </aside>
+
+    <main class="main">
+      <div class="pagehead"><div><div class="title-kicker"><span class="eyebrow">MESA DE EXPLORACIÓN</span><span class="serial">/ EXP–001</span></div><h1 class="page-title">El <span>triángulo</span> abierto</h1><p class="subtitle">Tres puntos. Infinitas relaciones. Mueve los vértices para descubrirlas.</p></div><div class="view-actions"><button class="action selected" id="gridBtn" type="button" aria-pressed="true">⊞ &nbsp;RETÍCULA</button><button class="action" id="resetBtn" type="button">↺ &nbsp;REINICIAR</button></div></div>
+      <section class="board" aria-label="Plano interactivo del triángulo">
+        <span class="board-tag" id="shapeTag">△ ESCALENO</span>
+        <svg id="plane" viewBox="0 0 800 480" role="img" aria-labelledby="svgTitle svgDesc"><title id="svgTitle">Plano interactivo de un triángulo</title><desc id="svgDesc">Triángulo cuyos vértices A, B y C se pueden arrastrar para explorar sus propiedades geométricas.</desc><g id="grid"></g><g id="geometry"></g></svg>
+        <div class="board-bottom"><i></i><span>PLANO CARTESIANO · arrastra A, B o C</span></div>
+      </section>
+      <div class="readout" aria-live="polite">
+        <div class="readout-item"><div class="readout-label"><b>▱</b> Área</div><div class="readout-value" id="areaValue">— <span class="readout-unit">cm²</span></div></div>
+        <div class="readout-item"><div class="readout-label"><b>⟳</b> Perímetro</div><div class="readout-value" id="perimeterValue">— <span class="readout-unit">cm</span></div></div>
+        <div class="readout-item"><div class="readout-label"><b>∑</b> Suma angular</div><div class="readout-value">180<span class="readout-unit">°</span></div></div>
+        <div class="readout-item"><div class="readout-label"><b>◎</b> Centroide</div><div class="readout-value" id="centroidValue">— <span class="readout-unit">(x, y)</span></div></div>
+      </div>
+      <div class="bottom-row">
+        <section><div class="block-title"><span>01 — Longitud de lados</span><span id="unitCaption">UNIDAD: cm</span></div><table class="side-table"><thead><tr><th>LADO</th><th>MAGNITUD</th><th>PROPORCIÓN</th></tr></thead><tbody id="sidesBody"></tbody></table></section>
+        <section><div class="block-title"><span>02 — Lectura del sistema</span><span>ANÁLISIS</span></div><div class="insight"><span class="insight-symbol">✳</span><div id="insightText">Tus puntos iniciales forman un triángulo <strong>escaleno</strong>. Mueve cualquier vértice para explorar cómo se transforma.</div></div><div class="insight"><span class="insight-symbol" style="color:var(--cyan)">↳</span><div id="relationText">La suma de los ángulos interiores de cualquier triángulo euclidiano siempre es <strong>180°</strong>.</div></div></section>
+      </div>
+    </main>
+
+    <aside class="inspector">
+      <div class="inspector-heading"><span class="inspector-title">Panel de propiedades</span><span class="inspector-code">LIVE · 01</span></div>
+      <div id="propertyList"></div>
+      <div class="angle-list"><div class="block-title"><span>Ángulos interiores</span><span>Σ = 180°</span></div><div id="angleRows"></div></div>
+      <div class="theorem"><div class="theorem-label">✳ &nbsp;OBSERVACIÓN</div><p id="theoremText">En un triángulo, al lado más largo se opone el <strong>ángulo mayor</strong>. Compruébalo moviendo los vértices.</p></div>
+      <div class="inspector-note">Los valores se calculan a partir de las coordenadas del plano. Arrastra cualquier punto para cambiar la configuración.</div>
+      <div class="statusline"><span>ESTADO DEL SISTEMA</span><strong>● &nbsp;ACTUALIZADO</strong></div>
+    </aside>
+  </div>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+(() => {
+  'use strict';
+  const svgNS = 'http://www.w3.org/2000/svg';
+  const svg = document.getElementById('plane');
+  const grid = document.getElementById('grid');
+  const layer = document.getElementById('geometry');
+  const defaults = { A:{x:220,y:365}, B:{x:580,y:365}, C:{x:395,y:125} };
+  let pts = structuredClone(defaults), activeShape='libre', showGrid=true, dragging=null, toastTimer;
+  let soundEnabled=true, audioContext=null;
+  function ping(kind='tap'){
+    if(!soundEnabled)return;
+    const Audio=window.AudioContext||window.webkitAudioContext;
+    if(!Audio)return;
+    try{
+      audioContext=audioContext||new Audio();
+      if(audioContext.state==='suspended')audioContext.resume();
+      const notes=kind==='select'?[520,780]:kind==='grab'?[390]:kind==='release'?[660,880]:kind==='toggle'?[440,590]:[620,830];
+      const now=audioContext.currentTime;
+      notes.forEach((frequency,index)=>{const osc=audioContext.createOscillator(),gain=audioContext.createGain();osc.type='sine';osc.frequency.setValueAtTime(frequency,now+index*.025);osc.frequency.exponentialRampToValueAtTime(frequency*1.13,now+.12+index*.025);gain.gain.setValueAtTime(.0001,now+index*.025);gain.gain.exponentialRampToValueAtTime(.018,now+.012+index*.025);gain.gain.exponentialRampToValueAtTime(.0001,now+.15+index*.025);osc.connect(gain);gain.connect(audioContext.destination);osc.start(now+index*.025);osc.stop(now+.16+index*.025);});
+    }catch(_){}
+  }
+  const constructions = new Set();
+  const clamp=(v,min,max)=>Math.max(min,Math.min(max,v));
+  const dist=(p,q)=>Math.hypot(q.x-p.x,q.y-p.y);
+  const midpoint=(p,q)=>({x:(p.x+q.x)/2,y:(p.y+q.y)/2});
+  const svgEl=(name,attrs={},parent=layer,text='')=>{const e=document.createElementNS(svgNS,name);for(const [k,v] of Object.entries(attrs))e.setAttribute(k,String(v));if(text)e.textContent=text;parent.appendChild(e);return e;};
+  const fmt=(n,d=1)=>Number.isFinite(n)?n.toFixed(d):'—';
+  function drawGrid(){grid.replaceChildren();if(!showGrid)return;for(let x=50;x<800;x+=40)svgEl('line',{x1:x,y1:35,x2:x,y2:450,class:'grid-line'},grid);for(let y=40;y<480;y+=40)svgEl('line',{x1:40,y1:y,x2:775,y2:y,class:'grid-line'},grid);svgEl('line',{x1:40,y1:365,x2:775,y2:365,class:'axis'},grid);svgEl('line',{x1:220,y1:25,x2:220,y2:450,class:'axis'},grid);for(let x=60;x<780;x+=80){svgEl('line',{x1:x,y1:361,x2:x,y2:369,class:'axis'},grid);if(x>250)svgEl('text',{x:x,y:382,'text-anchor':'middle',class:'axis-label'},grid,String(Math.round((x-220)/40)));}for(let y=45;y<450;y+=80){svgEl('line',{x1:216,y1:y,x2:224,y2:y,class:'axis'},grid);if(y!==365)svgEl('text',{x:207,y:y+3,'text-anchor':'end',class:'axis-label'},grid,String(Math.round((365-y)/40)));}svgEl('text',{x:778,y:359,class:'axis-label'},grid,'x');svgEl('text',{x:226,y:31,class:'axis-label'},grid,'y');}
+  function footPoint(p,a,b){const dx=b.x-a.x,dy=b.y-a.y,t=clamp(((p.x-a.x)*dx+(p.y-a.y)*dy)/(dx*dx+dy*dy),0,1);return{x:a.x+t*dx,y:a.y+t*dy};}
+  function circumcenter(){const {A:a,B:b,C:c}=pts,D=2*(a.x*(b.y-c.y)+b.x*(c.y-a.y)+c.x*(a.y-b.y));if(Math.abs(D)<1e-6)return null;const aa=a.x*a.x+a.y*a.y,bb=b.x*b.x+b.y*b.y,cc=c.x*c.x+c.y*c.y;return{x:(aa*(b.y-c.y)+bb*(c.y-a.y)+cc*(a.y-b.y))/D,y:(aa*(c.x-b.x)+bb*(a.x-c.x)+cc*(b.x-a.x))/D};}
+  function render(){
+    layer.replaceChildren();const {A,B,C}=pts,vertices=[A,B,C];
+    svgEl('polygon',{points:vertices.map(p=>`${p.x},${p.y}`).join(' '),class:'tri-fill'},layer);
+    svgEl('polyline',{points:`${A.x},${A.y} ${B.x},${B.y} ${C.x},${C.y} ${A.x},${A.y}`,class:'edge'},layer);
+    if(constructions.has('altura')){const H=footPoint(C,A,B);svgEl('line',{x1:C.x,y1:C.y,x2:H.x,y2:H.y,class:'construction'},layer);if(H.x>Math.min(A.x,B.x)&&H.x<Math.max(A.x,B.x)){const sx=B.x>A.x?1:-1;svgEl('path',{d:`M ${H.x-sx*10} ${H.y} L ${H.x-sx*10} ${H.y-10} L ${H.x} ${H.y-10}`,class:'right-mark'},layer);}svgEl('circle',{cx:H.x,cy:H.y,r:3,class:'center-point'},layer);svgEl('text',{x:H.x+7,y:H.y-7,class:'point-label'},layer,'H');}
+    if(constructions.has('mediana')){const M=midpoint(A,B);svgEl('line',{x1:C.x,y1:C.y,x2:M.x,y2:M.y,class:'construction'},layer);svgEl('circle',{cx:M.x,cy:M.y,r:3,class:'center-point'},layer);svgEl('text',{x:M.x+7,y:M.y-7,class:'point-label'},layer,'M');}
+    if(constructions.has('bisectriz')){const ac=dist(C,A),bc=dist(C,B),P={x:(bc*A.x+ac*B.x)/(ac+bc),y:(bc*A.y+ac*B.y)/(ac+bc)};svgEl('line',{x1:C.x,y1:C.y,x2:P.x,y2:P.y,class:'construction'},layer);}
+    if(constructions.has('circuncentro')){const O=circumcenter();if(O){const r=dist(O,A);svgEl('circle',{cx:O.x,cy:O.y,r,class:'circumcircle'},layer);svgEl('circle',{cx:O.x,cy:O.y,r:4,class:'center-point'},layer);svgEl('text',{x:O.x+8,y:O.y-7,class:'point-label'},layer,'O');}}
+    vertices.forEach((p,i)=>{const key=['A','B','C'][i],dot=svgEl('circle',{cx:p.x,cy:p.y,r:7,class:'vertex',tabindex:'0',role:'button','aria-label':`Vértice ${key}, arrastra para mover`},layer);dot.dataset.point=key;dot.addEventListener('keydown',e=>{if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)){e.preventDefault();const k=e.key==='ArrowLeft'?-8:e.key==='ArrowRight'?8:0;const j=e.key==='ArrowUp'?-8:e.key==='ArrowDown'?8:0;pts[key].x=clamp(p.x+k,48,752);pts[key].y=clamp(p.y+j,48,435);render();}});const ox=key==='A'?-17:key==='B'?10:4,oy=key==='C'?-13:20;svgEl('text',{x:p.x+ox,y:p.y+oy,class:'vertex-label'},layer,key);});
+    const sides=[dist(A,B),dist(B,C),dist(C,A)],area=Math.abs((A.x*(B.y-C.y)+B.x*(C.y-A.y)+C.x*(A.y-B.y))/2),perimeter=sides.reduce((a,b)=>a+b,0);
+    const angles=[Math.acos(clamp((sides[2]**2+sides[0]**2-sides[1]**2)/(2*sides[2]*sides[0]),-1,1))*180/Math.PI,Math.acos(clamp((sides[0]**2+sides[1]**2-sides[2]**2)/(2*sides[0]*sides[1]),-1,1))*180/Math.PI];angles.push(180-angles[0]-angles[1]);
+    const centroid={x:(A.x+B.x+C.x)/3,y:(A.y+B.y+C.y)/3};
+    // The drawing uses 40 screen units for each centimetre.
+    const cmPerUnit=.25,cmSides=sides.map(x=>x*cmPerUnit),cmArea=area*cmPerUnit*cmPerUnit,cmPerimeter=perimeter*cmPerUnit;
+    const degenerate=area<30,equalAB=Math.abs(sides[0]-sides[1])<3,equalBC=Math.abs(sides[1]-sides[2])<3,equalCA=Math.abs(sides[2]-sides[0])<3;
+    const kind=degenerate?'DEGENERADO':equalAB&&equalBC?'EQUILÁTERO':equalAB||equalBC||equalCA?'ISÓSCELES':angles.some(x=>Math.abs(x-90)<1.2)?'RECTÁNGULO':'ESCALENO';
+    document.getElementById('areaValue').innerHTML=`${fmt(cmArea)} <span class="readout-unit">cm²</span>`;
+    document.getElementById('perimeterValue').innerHTML=`${fmt(cmPerimeter)} <span class="readout-unit">cm</span>`;
+    document.getElementById('centroidValue').innerHTML=`${fmt((centroid.x-220)*cmPerUnit)}, ${fmt((365-centroid.y)*cmPerUnit)} <span class="readout-unit">cm</span>`;
+    document.getElementById('shapeTag').textContent=`△ ${kind}`;
+    const ids=['AB','BC','CA'];document.getElementById('sidesBody').innerHTML=ids.map((id,i)=>`<tr><td class="side-id">${id}</td><td>${fmt(cmSides[i])} cm</td><td><span class="mini-bar"><i style="width:${Math.max(8,cmSides[i]/Math.max(...cmSides)*100)}%"></i></span>${fmt(cmSides[i]/cmPerimeter*100,0)}%</td></tr>`).join('');
+    const names=['Área','Perímetro','Lado mayor'];const vals=[cmArea/100,cmPerimeter/12,Math.max(...cmSides)/7];const max=Math.max(...vals,.001);document.getElementById('propertyList').innerHTML=names.map((n,i)=>{const v=[cmArea,cmPerimeter,Math.max(...cmSides)][i],u=i===0?'cm²':'cm';return `<div class="property"><div class="property-head"><span class="property-name">${n}</span><span class="property-value">${fmt(v)} <span class="unit">${u}</span></span></div><div class="property-track"><i style="width:${clamp(vals[i]/max*100,3,100)}%"></i></div><div class="property-detail"><span>${['SUPERFICIE','CONTORNO','LONGITUD MÁX.'][i]}</span><span>${fmt(vals[i]/max*100,0)}%</span></div></div>`}).join('');
+    document.getElementById('angleRows').innerHTML=angles.map((a,i)=>`<div class="angle-row"><span class="angle-left"><i class="angle-dot"></i>∠${['A','B','C'][i]}</span><b>${fmt(a)}°</b></div>`).join('');
+    const label=kind.toLowerCase();document.getElementById('insightText').innerHTML=degenerate?'Los vértices casi están alineados. El área se aproxima a <strong>cero</strong>.':`Tu configuración es <strong>${label}</strong>. ${kind==='EQUILÁTERO'?'Todos sus lados y ángulos son iguales.':kind==='ISÓSCELES'?'Dos lados comparten la misma longitud.':kind==='RECTÁNGULO'?'Un ángulo mide exactamente 90°.':'Cada lado tiene una longitud diferente.'}`;
+    const longest=Math.max(...sides),li=sides.indexOf(longest),largestAngle=Math.max(...angles),ai=angles.indexOf(largestAngle);document.getElementById('relationText').innerHTML=`El lado <strong>${ids[li]}</strong> es el más largo; enfrente está ∠<strong>${['C','A','B'][li]}</strong> = ${fmt(angles[[2,0,1][li]])}°.`;
+    const maxSide=Math.max(...cmSides),minSide=Math.min(...cmSides);document.getElementById('theoremText').innerHTML=kind==='EQUILÁTERO'?'<strong>Tres lados iguales</strong> implican tres ángulos de 60°. Una simetría perfecta.':kind==='ISÓSCELES'?'<strong>Dos lados iguales</strong> producen dos ángulos de base iguales. Observa la simetría.':kind==='RECTÁNGULO'?'<strong>El teorema de Pitágoras</strong> relaciona los dos catetos con la hipotenusa.':`Entre el lado mayor (<strong>${fmt(maxSide)} cm</strong>) y el menor (<strong>${fmt(minSide)} cm</strong>), el ángulo opuesto también cambia.`;
+  }
+  function setPreset(name){activeShape=name;document.querySelectorAll('[data-shape]').forEach(b=>{const yes=b.dataset.shape===name;b.classList.toggle('active',yes);b.setAttribute('aria-pressed',String(yes));});if(name==='libre')pts=structuredClone(defaults);if(name==='equilatero'){const a={x:220,y:365},b={x:580,y:365},c={x:400,y:365-Math.sqrt(3)*180};pts={A:a,B:b,C:c};}if(name==='rectangulo')pts={A:{x:220,y:365},B:{x:580,y:365},C:{x:220,y:125}};render();}
+  document.querySelectorAll('[data-shape]').forEach(b=>b.addEventListener('click',()=>{ping('select');setPreset(b.dataset.shape);}));
+  document.getElementById('soundBtn').addEventListener('click',e=>{soundEnabled=!soundEnabled;e.currentTarget.textContent=soundEnabled?'♫ SONIDO ON':'♫ SONIDO OFF';e.currentTarget.setAttribute('aria-pressed',String(soundEnabled));e.currentTarget.setAttribute('aria-label',soundEnabled?'Desactivar sonido':'Activar sonido');if(soundEnabled)ping('toggle');});
+  document.querySelectorAll('[data-construct]').forEach(input=>input.addEventListener('change',()=>{ping('toggle');if(input.checked)constructions.add(input.dataset.construct);else constructions.delete(input.dataset.construct);render();}));
+  svg.addEventListener('pointerdown',e=>{const target=e.target.closest('[data-point]');if(target){dragging=target.dataset.point;ping('grab');svg.setPointerCapture(e.pointerId);e.preventDefault();}});
+  svg.addEventListener('pointermove',e=>{if(!dragging)return;const point=new DOMPoint(e.clientX,e.clientY).matrixTransform(svg.getScreenCTM().inverse());pts[dragging]={x:clamp(point.x,48,752),y:clamp(point.y,48,435)};activeShape='libre';document.querySelectorAll('[data-shape]').forEach(b=>{const yes=b.dataset.shape==='libre';b.classList.toggle('active',yes);b.setAttribute('aria-pressed',String(yes));});render();});
+  window.addEventListener('pointerup',()=>{if(dragging){dragging=null;ping('release');}});
+  document.getElementById('gridBtn').addEventListener('click',e=>{showGrid=!showGrid;e.currentTarget.classList.toggle('selected',showGrid);e.currentTarget.setAttribute('aria-pressed',String(showGrid));drawGrid();});
+  document.getElementById('resetBtn').addEventListener('click',()=>{ping('select');setPreset('libre');toast('Puntos restaurados a su posición inicial.');});
+  const toastEl=document.getElementById('toast');function toast(msg){toastEl.textContent=msg;toastEl.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>toastEl.classList.remove('show'),2200);}
+  document.getElementById('helpBtn').addEventListener('click',()=>toast('Elige un triángulo y arrastra sus puntos. Activa construcciones en el panel izquierdo.'));
+  drawGrid();render();
+})();
+</script>
+</body>
+</html>
+
+
+
+
+
